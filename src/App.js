@@ -2,10 +2,11 @@ import {react, useState} from "react"
 import criarDatabase from "./services/services"
 import "./styles/app.css"
 let countResposta = 0
+let perguntas = []
 function App() {
   
   let [IdBot, setIdBot] = useState("")
-  let perguntas = []
+
   let [enunciado, setEnunciado] = useState("")
   let [type, setType] = useState("")
   let [resposta1, setResposta1] = useState("")
@@ -19,9 +20,10 @@ function App() {
   let [corEmbed, setCorEmbed] = useState("")
   let [tempoCollector, settempoCollector] = useState("")
 
-    async function addResposta(value){
+
+    async function addResposta(){
           perguntas.push({
-               : [{
+            "id": countResposta,
             "type": type, 
             "enunciado": enunciado, 
             "respostas": [
@@ -42,7 +44,6 @@ function App() {
                     "value": '4'
                 },
             ], 
-        }],
     }
     )
     countResposta++
@@ -60,7 +61,7 @@ function App() {
         <input className="resposta" placeholder="Resposta n3" onChange={(evt) => setResposta3(evt.target.value)}/>
         <input className="resposta" placeholder="Resposta n4" onChange={(evt) => setResposta4(evt.target.value)}/>
 
-        <button onClick={(evt) => {addResposta(countResposta); evt.preventDefault()} }>Clique aqui para adicionar resposta!</button>
+        <button onClick={(evt) => {addResposta(); evt.preventDefault()} }>Clique aqui para adicionar resposta!</button>
 
 
         <input className="aprovado" onChange={(evt) => setAprovado(evt.target.value)}/>
